@@ -1,0 +1,333 @@
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+body{font-family:'Cairo',sans-serif;transition:0.3s;}
+body.light{background:#fff;color:#000;}
+body.dark{background:#000;color:#FFD700;}
+
+/* Dark Mode Toggle */
+#darkModeToggle{position:fixed;top:20px;right:20px;background:#FFD700;color:#000;padding:12px;border-radius:50%;cursor:pointer;z-index:1000;}
+#darkModeToggle:hover{background:#e6c200;}
+
+/* Hero */
+.hero{position:relative;height:90vh;display:flex;justify-content:center;align-items:center;text-align:center;overflow:hidden;background:#111;}
+.hero-container{position:relative;z-index:10;}
+.hero-content{display:flex;align-items:center;gap:30px;flex-wrap:wrap;justify-content:center;}
+.hero-photo{width:250px;height:250px;border-radius:50%;object-fit:cover;border:4px solid #FFD700;}
+.hero-text h1{font-size:3em;margin-bottom:10px;color:#FFD700;}
+.hero-text p{font-size:1.3em;margin-bottom:20px;color:#fff;}
+.whatsapp-btn{background:#25d366;color:#fff;padding:15px 25px;border-radius:50px;text-decoration:none;font-weight:600;transition:0.3s;}
+.whatsapp-btn:hover{transform:scale(1.05);}
+
+/* Animated planets */
+.planet{position:absolute;border-radius:50%;background:#FFD700;opacity:0.6;}
+.planet1{width:40px;height:40px;top:20%;left:10%;animation:orbit 8s linear infinite;}
+.planet2{width:30px;height:30px;top:40%;left:80%;animation:orbit 12s linear infinite;}
+.planet3{width:25px;height:25px;top:70%;left:20%;animation:orbit 10s linear infinite;}
+.planet4{width:35px;height:35px;top:60%;left:60%;animation:orbit 14s linear infinite;}
+@keyframes orbit{
+  0%{transform:rotate(0deg) translateX(100px) rotate(0deg);}
+  100%{transform:rotate(360deg) translateX(100px) rotate(-360deg);}
+}
+
+/* Projects Grid */
+.projects{padding:50px 20px;}
+.projects h2{text-align:center;margin-bottom:40px;font-size:2em;}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+.card{border-radius:15px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,0.1);transition:transform 0.3s;}
+.card:hover{transform:scale(1.05);}
+.card img{width:100%;height:200px;object-fit:cover;cursor:pointer;}
+.card h3{text-align:center;margin:10px 0;}
+.card p{text-align:center;color:#555;}
+
+/* Container */
+.services {
+  padding: 70px 20px;
+  background: #f9f9f9; /* خلفية فاتحة واضحة */
+  color: #111; /* نص افتراضي */
+}
+
+/* Dark Mode */
+body.dark .services {
+  background: #111;
+  color: #fff;
+}
+
+.services-title {
+  display: flex;               /* flex لتوسيط كل العناصر */
+  justify-content: center;     /* يوسّط أفقياً */
+  align-items: center;         /* يوسّط عمودياً لو احتجنا */
+  font-size: 3em;
+  font-weight: 800;
+  color: #000;                 /* اللون أسود */
+  margin-bottom: 50px;
+  position: relative;
+}
+
+/* الخط الأحمر تحت الكلمة */
+.services-title .underline {
+  position: absolute;
+  bottom: -10px;               /* تحت الكلمة */
+  height: 4px;
+  width: 100%;                 /* يغطي طول الكلمة */
+  max-width: 120px;            /* أقصى طول ثابت إذا تحب */
+  background-color: red;
+  border-radius: 2px;
+  animation: slideIn 1s forwards;
+}
+
+/* أنيميشن للخط */
+@keyframes slideIn {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+/* Grid للكروت */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+/* Service Cards */
+.service-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  position: relative;
+  transform: translateY(0); /* إزالة transform يختفي */
+  opacity: 1; /* تظهر مباشرة */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+body.dark .service-card {
+  background: #222;
+  box-shadow: 0 5px 15px rgba(255,255,255,0.05);
+}
+
+.service-card h3 {
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #111;
+}
+
+body.dark .service-card h3 { color: #fff; }
+
+.service-card p {
+  color: #555;
+  font-size: 0.95em;
+  margin-bottom: 15px;
+}
+
+body.dark .service-card p { color: #ccc; }
+
+.service-card i {
+  font-size: 3em;
+  margin-bottom: 15px;
+  display: block;
+  transition: transform 0.3s;
+}
+
+/* Hover Animation مع سهم */
+.service-card::after {
+  content: "➜";
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 1.5em;
+  color: red;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.service-card:hover::after {
+  opacity: 1;
+  right: 25px;
+}
+
+/* Platform Colors */
+.service-card.facebook i { color: #1877f2; }
+.service-card.instagram i { color: #c13584; }
+.service-card.tiktok i { color: #010101; }
+.service-card.google i { color: #4285F4; }
+.service-card.landing i { color: #FFD700; }
+
+.faq {
+  padding: 70px 20px;
+  background: #fff;
+  color: #111;
+}
+
+body.dark .faq {
+  background: #111;
+  color: #fff;
+}
+
+.faq-title {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: 800;
+  margin-bottom: 50px;
+}
+
+/* FAQ Items */
+.faq-item {
+  max-width: 800px;
+  margin: 10px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 20px 25px;
+  background: #f1f1f1;
+  color: #111;
+  font-size: 1.1em;
+  font-weight: 600;
+  border: none;
+  text-align: right; /* عربي من اليمين لليسار */
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s;
+}
+
+body.dark .faq-question {
+  background: #222;
+  color: #fff;
+}
+
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  left: 25px;
+  font-size: 1.5em;
+  transition: transform 0.3s;
+}
+
+.faq-question.active::after {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 25px;
+  background: #fff;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+body.dark .faq-answer {
+  background: #111;
+  color: #fff;
+}
+
+.faq-answer p {
+  margin: 15px 0;
+  font-size: 1em;
+  line-height: 1.6em;
+}
+
+/* زر WhatsApp Floating */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #25D366;
+  color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.whatsapp-float:hover { transform: scale(1.1); }
+
+/* نافذة الشات */
+.whatsapp-modal {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 300px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: none; /* تبدأ مخفية */
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1001;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* رأس النافذة */
+.whatsapp-header {
+  background-color: #25D366;
+  color: #fff;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.whatsapp-header .close-modal {
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+/* الجسم */
+.whatsapp-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.whatsapp-body textarea {
+  resize: none;
+  height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* زر الإرسال */
+.send-btn {
+  background-color: #25D366;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.send-btn:hover { background-color: #1ebe5d; }
+
+
+/* Footer */
+footer{text-align:center;padding:20px;background:#111;color:#fff;}
+footer a{color:#25d366;text-decoration:none;font-weight:600;}
+
+/* Lightbox */
+#lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;z-index:10000;}
+#lightbox img{max-width:90%;max-height:90%;border-radius:10px;}
+#close-lightbox{position:absolute;top:20px;right:40px;font-size:3em;color:#fff;cursor:pointer;}
