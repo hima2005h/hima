@@ -76,19 +76,12 @@ whatsappBtn.addEventListener('click', () => {
 closeModal.addEventListener('click', () => {
   whatsappModal.style.display = 'none';
 });
-// عناصر
-const openForm = document.getElementById('openForm');
-const modal = document.querySelector('.form-modal');
-const closeForm = document.querySelector('.close-form');
 const sendBtn = document.getElementById('sendOrder');
+const successBox = document.querySelector('.success-box');
+const loader = document.querySelector('.loader');
+const checkmark = document.querySelector('.checkmark');
+const doneBtn = document.getElementById('doneBtn');
 
-// فتح
-openForm.onclick = () => modal.style.display = "flex";
-
-// غلق
-closeForm.onclick = () => modal.style.display = "none";
-
-// إرسال واتساب
 sendBtn.onclick = () => {
   let name = document.getElementById('name').value;
   let phone = document.getElementById('phone').value;
@@ -103,7 +96,23 @@ sendBtn.onclick = () => {
 رقم الخط: ${clientNumber}%0A
 رقم المحول منه: ${senderNumber}`;
 
-  let url = `https://wa.me/201559276708?text=${message}`;
+  // إظهار رسالة النجاح
+  successBox.style.display = "flex";
 
+  // بعد 2 ثانية → يظهر الصح
+  setTimeout(() => {
+    loader.style.display = "none";
+    checkmark.style.display = "block";
+    doneBtn.style.display = "inline-block";
+  }, 2000);
+
+  // فتح واتساب
+  let url = `https://wa.me/201559276708?text=${message}`;
   window.open(url, '_blank');
+};
+
+// زر تم
+doneBtn.onclick = () => {
+  successBox.style.display = "none";
+  location.reload(); // يرجع الصفحة زي الأول
 };
