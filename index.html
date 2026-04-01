@@ -121,29 +121,40 @@ body {
 
 .form-box {
   background: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  width: 300px;
+  padding: 30px;          /* كبر المسافات الداخلية */
+  border-radius: 20px;
+  width: 400px;           /* كبر عرض الفورم */
+  max-width: 90%;         /* عشان الموبايل */
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   position: relative;
 }
 
 .form-box input,
 .form-box select {
-  padding: 10px;
-  border-radius: 8px;
+  padding: 14px;          /* أكبر */
+  font-size: 16px;        /* خط أوضح */
+  border-radius: 10px;
   border: 1px solid #ccc;
 }
 
 .form-box button {
   background: #25D366;
   color: #fff;
-  padding: 10px;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Hover */
+.form-box button:hover {
+  transform: scale(1.05);
+  background: #1ebe5d;
 }
 
 .close-form {
@@ -224,7 +235,7 @@ body {
   <h2 class="store-title">خدمات الشحن</h2>
 
   <div class="store-card">
-    <img src="images/we.png" alt="WE" class="store-img">
+    <img src="images/we.jpg" alt="WE" class="store-img">
 
     <h3>شحن الإنترنت والراوتر</h3>
     <p>اشحن باقتك بكل سهولة وسرعة</p>
