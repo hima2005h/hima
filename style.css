@@ -120,13 +120,6 @@ body.dark{background:#000;color:#FFD700;}
   font-size:14px;
   line-height:1.5;
 }
-
-/* Container */
-.services {
-  padding: 70px 20px;
-  background: #f9f9f9; /* خلفية فاتحة واضحة */
-  color: #111; /* نص افتراضي */
-} 
 /* Card */
 .card{
   border-radius:15px;
@@ -140,6 +133,12 @@ body.dark{background:#000;color:#FFD700;}
   transform:translateY(-10px);
   box-shadow:0 15px 30px rgba(255, 215, 0, 0.6), 0 10px 20px rgba(0,0,0,0.2);
 }
+/* Container */
+.services {
+  padding: 70px 20px;
+  background: #f9f9f9; /* خلفية فاتحة واضحة */
+  color: #111; /* نص افتراضي */
+} 
 
 /* Dark Mode */
 body.dark .services {
