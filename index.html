@@ -31,11 +31,191 @@
     <div class="planet planet4"></div>
   </div>
 </header>
-  <section class="store">
+  <!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Store</title>
+
+<!-- خط Cairo -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* عام */
+body {
+  font-family: 'Cairo', sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+}
+
+/* سكشن المتجر */
+.store {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.store-title {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #000;
+}
+
+/* الكارد */
+.store-card {
+  background: #111;
+  color: #fff;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 320px;
+  margin: auto;
+  transition: 0.3s;
+}
+
+.store-card:hover {
+  transform: translateY(-10px);
+}
+
+/* الصورة */
+.store-img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+/* زر */
+.store-card button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  background: #25D366;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* الفورم */
+.form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.form-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.form-box input,
+.form-box select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.form-box button {
+  background: #25D366;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.close-form {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 1.3em;
+}
+
+.note {
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* نجاح */
+.success-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.success-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  width: 280px;
+}
+
+/* لودينج */
+.loader {
+  border: 4px solid #eee;
+  border-top: 4px solid #25D366;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  margin: auto;
+  animation: spin 1s linear infinite;
+}
+
+/* صح */
+.checkmark {
+  display: none;
+  font-size: 35px;
+  color: #25D366;
+  margin: 10px 0;
+}
+
+/* زر تم */
+#doneBtn {
+  display: none;
+  padding: 8px 20px;
+  border: none;
+  background: #25D366;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="store">
   <h2 class="store-title">خدمات الشحن</h2>
 
   <div class="store-card">
-    <img src="images/we.jpg" alt="WE Service" class="store-img">
+    <img src="images/we.png" alt="WE" class="store-img">
 
     <h3>شحن الإنترنت والراوتر</h3>
     <p>اشحن باقتك بكل سهولة وسرعة</p>
@@ -44,8 +224,34 @@
   </div>
 </section>
 
-<!-- رسالة النجاح -->
-<div class="success-box">
+<!-- الفورم -->
+<div class="form-modal">
+  <div class="form-box">
+    <span class="close-form">&times;</span>
+
+    <h3>إتمام الطلب</h3>
+
+    <input type="text" id="name" placeholder="اسم العميل">
+    <input type="text" id="phone" placeholder="رقم موبايل للتواصل">
+
+    <select id="type">
+      <option value="">نوع الشحن</option>
+      <option value="إنترنت شهري">إنترنت شهري</option>
+      <option value="أرضي كل 3 شهور">أرضي كل 3 شهور</option>
+    </select>
+
+    <input type="text" id="clientNumber" placeholder="رقم الخط">
+
+    <p class="note">📌 التحويل على: 01009248856</p>
+
+    <input type="text" id="senderNumber" placeholder="رقم المحول منه">
+
+    <button id="sendOrder">إرسال</button>
+  </div>
+</div>
+
+<!-- نجاح -->
+<div class="success-box" id="successBox">
   <div class="success-content">
     <div class="loader"></div>
     <div class="checkmark">✔</div>
@@ -53,12 +259,61 @@
     <button id="doneBtn">تم</button>
   </div>
 </div>
-<section class="services">
-  <div class="container">
-    <!-- العنوان مع الخط التحتي -->
-    <h2 class="services-title">خدماتي
-      <span class="underline"></span>
-    </h2>
+
+<script>
+
+// عناصر
+const openForm = document.getElementById('openForm');
+const modal = document.querySelector('.form-modal');
+const closeForm = document.querySelector('.close-form');
+
+openForm.onclick = () => modal.style.display = "flex";
+closeForm.onclick = () => modal.style.display = "none";
+
+// إرسال
+document.getElementById('sendOrder').onclick = () => {
+
+  let name = document.getElementById('name').value;
+  let phone = document.getElementById('phone').value;
+  let type = document.getElementById('type').value;
+  let clientNumber = document.getElementById('clientNumber').value;
+  let senderNumber = document.getElementById('senderNumber').value;
+
+  let message = `طلب شحن:%0A
+الاسم: ${name}%0A
+رقم التواصل: ${phone}%0A
+النوع: ${type}%0A
+رقم الخط: ${clientNumber}%0A
+المحول منه: ${senderNumber}`;
+
+  let url = `https://wa.me/201559276708?text=${message}`;
+
+  window.open(url, '_blank');
+
+  // نجاح
+  const box = document.getElementById("successBox");
+  const loader = box.querySelector(".loader");
+  const check = box.querySelector(".checkmark");
+  const btn = document.getElementById("doneBtn");
+
+  box.style.display = "flex";
+
+  setTimeout(() => {
+    loader.style.display = "none";
+    check.style.display = "block";
+    btn.style.display = "inline-block";
+  }, 1500);
+};
+
+// زر تم
+document.getElementById("doneBtn").onclick = () => {
+  document.getElementById("successBox").style.display = "none";
+};
+
+</script>
+
+</body>
+</html>
     <!-- شبكة الخدمات -->
     <div class="services-grid">
 
