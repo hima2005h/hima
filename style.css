@@ -359,7 +359,102 @@ body.dark .faq-answer {
 
 .send-btn:hover { background-color: #1ebe5d; }
 
+.store {
+  padding: 80px 20px;
+  text-align: center;
+}
 
+.store-title {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #000;
+}
+
+body.dark .store-title {
+  color: #fff;
+}
+
+.store-card {
+  background: #111;
+  color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 350px;
+  margin: auto;
+  transition: transform 0.3s;
+}
+
+.store-card:hover {
+  transform: translateY(-10px);
+}
+
+.store-card button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  background: #25D366;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* الفورم */
+.form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.form-box {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+body.dark .form-box {
+  background: #222;
+  color: #fff;
+}
+
+.form-box input,
+.form-box select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.form-box button {
+  background: #25D366;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.close-form {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.note {
+  font-size: 0.9em;
+  color: #666;
+}
 /* Footer */
 footer{text-align:center;padding:20px;background:#111;color:#fff;}
 footer a{color:#25d366;text-decoration:none;font-weight:600;}
