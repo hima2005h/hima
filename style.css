@@ -28,7 +28,7 @@ body.dark{background:#000;color:#FFD700;}
   100%{transform:rotate(360deg) translateX(100px) rotate(-360deg);}
 }
 
-/* Projects Grid */
+/* Projects Section */
 .projects{
   padding:50px 20px;
 }
@@ -39,13 +39,14 @@ body.dark{background:#000;color:#FFD700;}
   font-size:2em;
 }
 
+/* Grid */
 .projects-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:25px;
 }
 
-/* card */
+/* Card */
 .card{
   border-radius:15px;
   overflow:hidden;
@@ -58,26 +59,28 @@ body.dark{background:#000;color:#FFD700;}
   transform:translateY(-8px);
 }
 
-/* image box */
+/* Image Box */
 .img-box{
   position:relative;
   overflow:hidden;
 }
 
-/* image */
+/* Image */
 .img-box img{
   width:100%;
-  height:auto;
+  height:250px; /* ارتفاع ثابت مع الحفاظ على aspect ratio */
+  object-fit:cover; /* الصور تظهر كاملة ومليانة الكارد */
   display:block;
   transition:0.4s;
+  cursor:pointer;
 }
 
-/* zoom */
+/* Zoom عند hover */
 .card:hover img{
   transform:scale(1.1);
 }
 
-/* overlay */
+/* Overlay */
 .overlay{
   position:absolute;
   top:0;
@@ -100,12 +103,12 @@ body.dark{background:#000;color:#FFD700;}
   font-size:14px;
 }
 
-/* show overlay */
+/* تظهر عند hover */
 .card:hover .overlay{
   opacity:1;
 }
 
-/* text */
+/* Text */
 .card h3{
   text-align:center;
   margin:10px 0;
@@ -114,6 +117,8 @@ body.dark{background:#000;color:#FFD700;}
 .card p{
   text-align:center;
   color:#555;
+  font-size:14px;
+  line-height:1.5;
 }
 
 /* Container */
