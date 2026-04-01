@@ -76,3 +76,34 @@ whatsappBtn.addEventListener('click', () => {
 closeModal.addEventListener('click', () => {
   whatsappModal.style.display = 'none';
 });
+// عناصر
+const openForm = document.getElementById('openForm');
+const modal = document.querySelector('.form-modal');
+const closeForm = document.querySelector('.close-form');
+const sendBtn = document.getElementById('sendOrder');
+
+// فتح
+openForm.onclick = () => modal.style.display = "flex";
+
+// غلق
+closeForm.onclick = () => modal.style.display = "none";
+
+// إرسال واتساب
+sendBtn.onclick = () => {
+  let name = document.getElementById('name').value;
+  let phone = document.getElementById('phone').value;
+  let type = document.getElementById('type').value;
+  let clientNumber = document.getElementById('clientNumber').value;
+  let senderNumber = document.getElementById('senderNumber').value;
+
+  let message = `طلب شحن جديد:%0A
+الاسم: ${name}%0A
+رقم التواصل: ${phone}%0A
+نوع الشحن: ${type}%0A
+رقم الخط: ${clientNumber}%0A
+رقم المحول منه: ${senderNumber}`;
+
+  let url = `https://wa.me/201559276708?text=${message}`;
+
+  window.open(url, '_blank');
+};
