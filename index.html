@@ -85,16 +85,23 @@ body {
   margin-bottom: 15px;
 }
 
-/* زر */
 .store-card button {
   margin-top: 20px;
-  padding: 15px 30px;
-  font-size: 30px
+  padding: 15px 30px;   /* كبر حجم الزر */
+  font-size: 18px;      /* كبر الخط */
+  font-weight: bold;
   border: none;
   background: #25D366;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+/* تأثير hover جامد */
+.store-card button:hover {
+  transform: scale(1.1);
+  background: #1ebe5d;
 }
 
 /* الفورم */
