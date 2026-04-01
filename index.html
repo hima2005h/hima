@@ -50,48 +50,7 @@ body {
   background: #f5f5f5;
 }
 
-<form id="orderForm">
-  <input type="text" id="name" placeholder="اسم العميل" required>
-  <input type="tel" id="phone" placeholder="رقم الموبايل للتواصل" required>
-  <select id="service" required>
-    <option value="">اختار نوع الشحن</option>
-    <option value="إنترنت شهري">إنترنت شهري</option>
-    <option value="أرضي كل 3 شهور">أرضي كل 3 شهور</option>
-  </select>
-  <input type="text" id="transfer" placeholder="رقم التحويل" required>
-  <input type="text" id="sender" placeholder="رقم الموبايل اللي حولت منه" required>
-  <button type="submit">إرسال الطلب</button>
-</form>
 
-<script>
-document.getElementById("orderForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  let name = document.getElementById("name").value.trim();
-  let phone = document.getElementById("phone").value.trim();
-  let service = document.getElementById("service").value.trim();
-  let transfer = document.getElementById("transfer").value.trim();
-  let sender = document.getElementById("sender").value.trim();
-
-  if (!name  !phone  !service  !transfer  !sender) {
-    alert("من فضلك املى كل البيانات ❗");
-    return;
-  }
-
-  let message = `طلب جديد:
-👤 الاسم: ${name}
-📞 الموبايل: ${phone}
-📡 الخدمة: ${service}
-💳 رقم التحويل: ${transfer}
-📲 تم التحويل من: ${sender}`;
-
-  let whatsappNumber = "201559276708"; // رقمك
-  let url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
-
-  document.getElementById("orderForm").reset();
-});
-</script>
 
 </body>
 </html>
