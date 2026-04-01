@@ -126,6 +126,19 @@ body.dark{background:#000;color:#FFD700;}
   padding: 70px 20px;
   background: #f9f9f9; /* خلفية فاتحة واضحة */
   color: #111; /* نص افتراضي */
+} 
+/* Card */
+.card{
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+  transition:0.3s, box-shadow 0.3s, transform 0.3s;
+  background:#fff;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 15px 30px rgba(255, 215, 0, 0.6), 0 10px 20px rgba(0,0,0,0.2);
 }
 
 /* Dark Mode */
