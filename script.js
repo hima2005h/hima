@@ -76,3 +76,27 @@ whatsappBtn.addEventListener('click', () => {
 closeModal.addEventListener('click', () => {
   whatsappModal.style.display = 'none';
 });
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('welcomeModal');
+    const closeBtn = document.getElementById('closeModal');
+
+    // إظهار المودال عند فتح الموقع
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 500); // نصف ثانية بعد تحميل الصفحة
+
+    // إغلاق المودال عند الضغط على الزر
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+    });
+
+    // إغلاق عند الضغط على الخلفية
+    modal.addEventListener('click', (e) => {
+      if(e.target === modal){
+        modal.classList.remove('show');
+      }
+    });
+  });
+</script>
