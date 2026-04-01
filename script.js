@@ -76,3 +76,29 @@ whatsappBtn.addEventListener('click', () => {
 closeModal.addEventListener('click', () => {
   whatsappModal.style.display = 'none';
 });
+
+<script>
+const scrollElements = document.querySelectorAll(".scroll-anim");
+
+const elementInView = (el, offset = 0) => {
+  const elementTop = el.getBoundingClientRect().top;
+  return elementTop <= ((window.innerHeight || document.documentElement.clientHeight) - offset);
+};
+
+const displayScrollElement = (element) => {
+  element.classList.add("active");
+};
+
+const handleScrollAnimation = () => {
+  scrollElements.forEach((el) => {
+    if(elementInView(el, 100)){
+      displayScrollElement(el);
+    }
+  })
+}
+
+window.addEventListener("scroll", handleScrollAnimation);
+
+// تشغيل الأنميشن عند تحميل الصفحة لأول مرة
+window.addEventListener("load", handleScrollAnimation);
+</script>
