@@ -340,8 +340,7 @@ document.getElementById("doneBtn").onclick = () => {
 
 </body>
 </html>
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
@@ -368,7 +367,6 @@ body {
   margin-bottom: 40px;
 }
 
-/* كارد */
 .store-card {
   background: #111;
   color: #fff;
@@ -389,7 +387,6 @@ body {
   object-fit: contain;
 }
 
-/* زر */
 .store-card button {
   margin-top: 20px;
   padding: 15px 30px;
@@ -402,7 +399,6 @@ body {
   cursor: pointer;
 }
 
-/* مودال */
 .form-modal {
   position: fixed;
   top: 0;
@@ -449,18 +445,11 @@ body {
   cursor: pointer;
 }
 
-.note {
-  font-size: 0.9em;
-  color: #666;
-}
-
-/* إجمالي */
 .total {
   font-weight: bold;
   margin-top: 5px;
 }
 
-/* نجاح */
 .success-box {
   position: fixed;
   top: 0;
@@ -519,15 +508,13 @@ body {
 
   <div class="store-card">
     <img src="images/wallet.png" class="store-img">
-
     <h3>إيداع وسحب المحافظ</h3>
     <p>أسرع خدمة وأقل عمولة 💸</p>
-
     <button id="openForm">ابدأ الآن</button>
   </div>
 </section>
 
-<!-- مودال -->
+<!-- الفورم -->
 <div class="form-modal">
   <div class="form-box">
     <span class="close-form">&times;</span>
@@ -537,7 +524,6 @@ body {
     <input type="text" id="name" placeholder="اسم العميل" required>
     <input type="text" id="phone" placeholder="رقم موبايل للتواصل" required>
 
-    <!-- المحفظة -->
     <select id="wallet" onchange="checkWallet()" required>
       <option value="">اختار المحفظة</option>
       <option value="فودافون كاش">فودافون كاش</option>
@@ -546,10 +532,8 @@ body {
       <option disabled>أورانج (قريباً)</option>
     </select>
 
-    <!-- رقم المحفظة -->
     <input type="text" id="walletNumber" placeholder="رقم المحفظة للإيداع" style="display:none;">
 
-    <!-- المبلغ -->
     <input type="number" id="amount" placeholder="المبلغ" oninput="calcTotal()">
 
     <div class="total" id="total"></div>
@@ -570,9 +554,16 @@ body {
 
 <script>
 
-// فتح وغلق
-openForm.onclick = () => document.querySelector('.form-modal').style.display = "flex";
-document.querySelector('.close-form').onclick = () => document.querySelector('.form-modal').style.display = "none";
+// تعريف العناصر (ده كان السبب في المشكلة 🔥)
+const openForm = document.getElementById('openForm');
+const modal = document.querySelector('.form-modal');
+const closeForm = document.querySelector('.close-form');
+const sendOrder = document.getElementById('sendOrder');
+const doneBtn = document.getElementById('doneBtn');
+
+// فتح وغلق الفورم
+openForm.onclick = () => modal.style.display = "flex";
+closeForm.onclick = () => modal.style.display = "none";
 
 // إظهار رقم المحفظة
 function checkWallet(){
@@ -602,7 +593,7 @@ function calcTotal(){
   }
 }
 
-// إرسال
+// إرسال الطلب
 sendOrder.onclick = () => {
 
   let name = document.getElementById("name").value;
@@ -636,10 +627,11 @@ sendOrder.onclick = () => {
   setTimeout(()=>{
     document.querySelector(".loader").style.display="none";
     document.querySelector(".checkmark").style.display="block";
-    document.getElementById("doneBtn").style.display="inline-block";
+    doneBtn.style.display="inline-block";
   },1500);
 };
 
+// زر تم
 doneBtn.onclick = () => {
   document.getElementById("successBox").style.display = "none";
 };
