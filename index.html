@@ -614,6 +614,27 @@ function sendOrder() {
     document.getElementById("doneBtn").style.display="inline-block";
   },1500);
 }
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const openBtn = document.getElementById("openForm");
+  const modal = document.querySelector(".form-modal");
+  const closeBtn = document.querySelector(".close-form");
+
+  openBtn.addEventListener("click", function() {
+    modal.style.display = "flex";
+  });
+
+  closeBtn.addEventListener("click", function() {
+    modal.style.display = "none";
+  });
+
+  // إغلاق لما تدوس برا الفورم
+  modal.addEventListener("click", function(e){
+    if(e.target === modal){
+      modal.style.display = "none";
+    }
+  });
+});
 </script>
 
 </body>
