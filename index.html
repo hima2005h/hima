@@ -381,9 +381,9 @@ body { font-family: 'Cairo', sans-serif; margin:0; background:#f5f5f5; }
   </div>
 </section>
 
-<div class="form-modal">
+<div class="form-modal" id="formModal">
   <div class="form-box">
-    <span class="close-form">&times;</span>
+    <span class="close-form" id="closeForm">&times;</span>
     <h3>إتمام الإيداع</h3>
 
     <input type="text" id="name" placeholder="اسم العميل" required>
@@ -417,11 +417,11 @@ body { font-family: 'Cairo', sans-serif; margin:0; background:#f5f5f5; }
 <script>
 window.onload = function(){
   const openBtn = document.getElementById("openForm");
-  const modal = document.querySelector(".form-modal");
-  const closeBtn = document.querySelector(".close-form");
+  const modal = document.getElementById("formModal");
+  const closeBtn = document.getElementById("closeForm");
   const wallet = document.getElementById("wallet");
   const walletNumber = document.getElementById("walletNumber");
-  
+
   openBtn.addEventListener("click", ()=> modal.style.display='flex');
   closeBtn.addEventListener("click", ()=> modal.style.display='none');
   modal.addEventListener("click", (e)=> { if(e.target===modal) modal.style.display='none'; });
