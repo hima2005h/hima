@@ -354,14 +354,12 @@ body { font-family: 'Cairo', sans-serif; margin:0; background:#f5f5f5; }
 .store-card { background:#111; color:#fff; padding:25px; border-radius:20px; max-width:320px; margin:auto; transition:0.3s; }
 .store-card:hover { transform:translateY(-10px); }
 .store-card button { margin-top:20px; padding:15px 30px; font-size:18px; font-weight:bold; border:none; background:#25D366; color:#fff; border-radius:12px; cursor:pointer; }
-
 .form-modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:none; justify-content:center; align-items:center; z-index:1000; }
 .form-box { background:#fff; padding:30px; border-radius:20px; width:400px; max-width:90%; display:flex; flex-direction:column; gap:12px; position:relative; }
 .form-box input, .form-box select { padding:12px; border-radius:10px; border:1px solid #ccc; }
 .form-box button { background:#25D366; color:#fff; padding:12px; border:none; border-radius:12px; cursor:pointer; }
 .close-form { position:absolute; right:15px; top:10px; cursor:pointer; }
 .total { font-weight:bold; margin-top:5px; }
-
 .success-box { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center; z-index:2000; }
 .success-content { background:#fff; padding:25px; border-radius:15px; text-align:center; }
 .loader { border:4px solid #eee; border-top:4px solid #25D366; border-radius:50%; width:45px; height:45px; margin:auto; animation:spin 1s linear infinite; }
@@ -373,22 +371,21 @@ body { font-family: 'Cairo', sans-serif; margin:0; background:#f5f5f5; }
 <body>
 
 <section class="store">
-  <h2 class="store-title">إيداع المحافظ</h2>
+  <h2 class="store-title">خدمة إيداع المحافظ</h2>
+
   <div class="store-card">
-    <h3>إيداع وسحب المحافظ</h3>
-    <p>أسرع خدمة وأقل عمولة 💸</p>
-    <button id="openForm">ابدأ الآن</button>
+    <p>أسرع خدمة إيداع المحافظ 💸</p>
+    <button id="openWalletForm">ابدأ الآن</button>
   </div>
 </section>
 
-<div class="form-modal" id="formModal">
+<!-- فورم إيداع المحافظ -->
+<div class="form-modal" id="walletFormModal">
   <div class="form-box">
-    <span class="close-form" id="closeForm">&times;</span>
+    <span class="close-form" id="closeWalletForm">&times;</span>
     <h3>إتمام الإيداع</h3>
-
-    <input type="text" id="name" placeholder="اسم العميل" required>
-    <input type="text" id="phone" placeholder="رقم موبايل للتواصل" required>
-
+    <input type="text" id="walletName" placeholder="اسم العميل" required>
+    <input type="text" id="walletPhone" placeholder="رقم موبايل للتواصل" required>
     <select id="wallet" required>
       <option value="">اختيار المحفظة للإيداع</option>
       <option value="فودافون كاش">فودافون كاش</option>
@@ -396,15 +393,14 @@ body { font-family: 'Cairo', sans-serif; margin:0; background:#f5f5f5; }
       <option value="اتصالات" disabled>اتصالات (قريبًا)</option>
       <option value="اورانج" disabled>اورانج (قريبًا)</option>
     </select>
-
     <input type="text" id="walletNumber" placeholder="رقم موبايل المحفظة للإيداع" style="display:none">
     <input type="number" id="amount" placeholder="المبلغ" oninput="calcTotal()" required>
     <div class="total" id="total"></div>
-
-    <button id="sendOrder">إرسال</button>
+    <button id="sendWalletOrder">إرسال</button>
   </div>
 </div>
 
+<!-- نجاح -->
 <div class="success-box" id="successBox">
   <div class="success-content">
     <div class="loader"></div>
@@ -416,18 +412,19 @@ body { font-family: 'Cairo', sans-serif; margin:0; background:#f5f5f5; }
 
 <script>
 window.onload = function(){
-  const openBtn = document.getElementById("openForm");
-  const modal = document.getElementById("formModal");
-  const closeBtn = document.getElementById("closeForm");
-  const wallet = document.getElementById("wallet");
+
+  const openWalletBtn = document.getElementById("openWalletForm");
+  const walletModal = document.getElementById("walletFormModal");
+  const closeWalletBtn = document.getElementById("closeWalletForm");
+  const walletSelect = document.getElementById("wallet");
   const walletNumber = document.getElementById("walletNumber");
 
-  openBtn.addEventListener("click", ()=> modal.style.display='flex');
-  closeBtn.addEventListener("click", ()=> modal.style.display='none');
-  modal.addEventListener("click", (e)=> { if(e.target===modal) modal.style.display='none'; });
+  openWalletBtn.addEventListener("click", ()=> walletModal.style.display='flex');
+  closeWalletBtn.addEventListener("click", ()=> walletModal.style.display='none');
+  walletModal.addEventListener("click", e=> { if(e.target===walletModal) walletModal.style.display='none'; });
 
-  wallet.addEventListener("change", ()=>{
-    walletNumber.style.display = (wallet.value==="فودافون كاش") ? "block" : "none";
+  walletSelect.addEventListener("change", ()=>{
+    walletNumber.style.display = (walletSelect.value==="فودافون كاش") ? "block" : "none";
   });
 
   window.calcTotal = function(){
@@ -439,10 +436,10 @@ window.onload = function(){
     } else div.innerHTML="";
   };
 
-  document.getElementById("sendOrder").addEventListener("click", ()=>{
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const w = wallet.value;
+  document.getElementById("sendWalletOrder").addEventListener("click", ()=>{
+    const name = document.getElementById("walletName").value;
+    const phone = document.getElementById("walletPhone").value;
+    const w = walletSelect.value;
     const wNum = walletNumber.value;
     const amt = document.getElementById("amount").value;
     if(!name||!phone||!w||!amt){ alert("املى كل البيانات"); return; }
@@ -450,6 +447,11 @@ window.onload = function(){
     const total = Number(amt)+tax;
     const msg = `طلب إيداع:%0A👤 ${name}%0A📞 ${phone}%0A💳 ${w}%0A📲 ${wNum}%0A💰 ${amt}%0A💸 ${tax}%0A✅ ${total}`;
     window.open(`https://wa.me/201559276708?text=${msg}`);
+    showSuccess();
+    walletModal.style.display='none';
+  });
+
+  function showSuccess(){
     const box = document.getElementById("successBox");
     box.style.display="flex";
     setTimeout(()=> {
@@ -457,11 +459,16 @@ window.onload = function(){
       document.querySelector(".checkmark").style.display="block";
       document.getElementById("doneBtn").style.display="inline-block";
     },1500);
-  });
+  }
 
   document.getElementById("doneBtn").addEventListener("click", ()=>{
-    document.getElementById("successBox").style.display="none";
+    const box = document.getElementById("successBox");
+    box.style.display="none";
+    document.querySelector(".loader").style.display="block";
+    document.querySelector(".checkmark").style.display="none";
+    document.getElementById("doneBtn").style.display="none";
   });
+
 };
 </script>
 
