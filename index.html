@@ -551,66 +551,67 @@ body {
     <button id="doneBtn">تم</button>
   </div>
 </div>
-
 <script>
 
-// تعريف العناصر (ده كان السبب في المشكلة 🔥)
-const openForm = document.getElementById('openForm');
-const modal = document.querySelector('.form-modal');
-const closeForm = document.querySelector('.close-form');
-const sendOrder = document.getElementById('sendOrder');
-const doneBtn = document.getElementById('doneBtn');
+document.addEventListener("DOMContentLoaded", function(){
 
-// فتح وغلق الفورم
-openForm.onclick = () => modal.style.display = "flex";
-closeForm.onclick = () => modal.style.display = "none";
+  // تعريف العناصر
+  const openForm = document.getElementById('openForm');
+  const modal = document.querySelector('.form-modal');
+  const closeForm = document.querySelector('.close-form');
+  const sendOrder = document.getElementById('sendOrder');
+  const doneBtn = document.getElementById('doneBtn');
 
-// إظهار رقم المحفظة
-function checkWallet(){
-  let wallet = document.getElementById("wallet").value;
-  let field = document.getElementById("walletNumber");
+  // فتح الفورم
+  openForm.onclick = () => modal.style.display = "flex";
 
-  if(wallet === "فودافون كاش"){
-    field.style.display = "block";
-    field.required = true;
-  } else {
-    field.style.display = "none";
+  // قفل الفورم
+  closeForm.onclick = () => modal.style.display = "none";
+
+  // إظهار رقم المحفظة
+  window.checkWallet = function(){
+    let wallet = document.getElementById("wallet").value;
+    let field = document.getElementById("walletNumber");
+
+    if(wallet === "فودافون كاش"){
+      field.style.display = "block";
+    } else {
+      field.style.display = "none";
+    }
   }
-}
 
-// حساب العمولة
-function calcTotal(){
-  let amount = document.getElementById("amount").value;
-  let div = document.getElementById("total");
+  // حساب العمولة
+  window.calcTotal = function(){
+    let amount = document.getElementById("amount").value;
+    let div = document.getElementById("total");
 
-  if(amount){
+    if(amount){
+      let tax = Math.floor(amount/1000)*5;
+      let total = Number(amount)+tax;
+      div.innerHTML = `💰 ${amount} + 💸 ${tax} = ✅ ${total}`;
+    } else {
+      div.innerHTML = "";
+    }
+  }
+
+  // إرسال
+  sendOrder.onclick = () => {
+
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let wallet = document.getElementById("wallet").value;
+    let walletNumber = document.getElementById("walletNumber").value;
+    let amount = document.getElementById("amount").value;
+
+    if(!name || !phone || !wallet || !amount){
+      alert("املى كل البيانات");
+      return;
+    }
+
     let tax = Math.floor(amount/1000)*5;
     let total = Number(amount)+tax;
 
-    div.innerHTML = `💰 ${amount} + 💸 ${tax} = ✅ ${total}`;
-  } else {
-    div.innerHTML = "";
-  }
-}
-
-// إرسال الطلب
-sendOrder.onclick = () => {
-
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let wallet = document.getElementById("wallet").value;
-  let walletNumber = document.getElementById("walletNumber").value;
-  let amount = document.getElementById("amount").value;
-
-  if(!name || !phone || !wallet || !amount){
-    alert("املى كل البيانات");
-    return;
-  }
-
-  let tax = Math.floor(amount/1000)*5;
-  let total = Number(amount)+tax;
-
-  let msg = `طلب إيداع:%0A
+    let msg = `طلب إيداع:%0A
 👤 ${name}%0A
 📞 ${phone}%0A
 💳 ${wallet}%0A
@@ -619,27 +620,26 @@ sendOrder.onclick = () => {
 💸 ${tax}%0A
 ✅ ${total}`;
 
-  window.open(`https://wa.me/201559276708?text=${msg}`);
+    window.open(`https://wa.me/201559276708?text=${msg}`);
 
-  let box = document.getElementById("successBox");
-  box.style.display = "flex";
+    let box = document.getElementById("successBox");
+    box.style.display = "flex";
 
-  setTimeout(()=>{
-    document.querySelector(".loader").style.display="none";
-    document.querySelector(".checkmark").style.display="block";
-    doneBtn.style.display="inline-block";
-  },1500);
-};
+    setTimeout(()=>{
+      document.querySelector(".loader").style.display="none";
+      document.querySelector(".checkmark").style.display="block";
+      doneBtn.style.display="inline-block";
+    },1500);
+  };
 
-// زر تم
-doneBtn.onclick = () => {
-  document.getElementById("successBox").style.display = "none";
-};
+  doneBtn.onclick = () => {
+    document.getElementById("successBox").style.display = "none";
+  };
+
+});
 
 </script>
 
-</body>
-</html>
 </body>
 </html>
     <!-- شبكة الخدمات -->
