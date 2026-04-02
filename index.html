@@ -340,7 +340,7 @@ document.getElementById("doneBtn").onclick = () => {
 
 </body>
 </html>
-.................................
+
   <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -427,6 +427,38 @@ document.getElementById("walletType").onchange = function(){
 document.getElementById("sendWallet").onclick = () => {
   let name = document.getElementById("clientName").value;
   let contact = document.getElementById("contactNumber").value;
+</body>
+</html>
+  let wallet = document.getElementById("walletType").value;
+  let deposit = document.getElementById("depositNumber").value;
+
+  if(!name  !contact  !wallet || (deposit==="" && document.getElementById("depositNumber").style.display==="block")){
+    alert("يرجى ملء جميع الحقول المطلوبة");
+    return;
+  }
+
+  let message = طلب إيداع محفظة:%0Aاسم العميل: ${name}%0Aرقم التواصل: ${contact}%0Aالمحفظة: ${wallet};
+  if(deposit) message += %0Aرقم المحفظة للإيداع: ${deposit};
+
+  let url = https://wa.me/201559276708?text=${message};
+  window.open(url, '_blank');
+
+  // اظهار رسالة نجاح
+  let success = document.getElementById("successMsg");
+  success.style.display = "block";
+
+  setTimeout(() => {
+    success.style.display = "none";
+    document.getElementById("walletModal").style.display = "none";
+    document.getElementById("clientName").value = "";
+    document.getElementById("contactNumber").value = "";
+    document.getElementById("walletType").value = "";
+    document.getElementById("depositNumber").value = "";
+    document.getElementById("depositNumber").style.display = "none";
+  }, 3000);
+};
+</script>
+
 </body>
 </html>
     <!-- شبكة الخدمات -->
